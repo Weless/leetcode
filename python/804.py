@@ -20,3 +20,29 @@ class Solution:
 
 s = Solution()
 print(s.uniqueMorseRepresentations(words = ["gin", "zen", "gig", "msg"]));
+
+
+
+#### other answer
+
+'''
+def uniqueMorseRepresentations(self, words):
+        d = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
+             "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
+        return len({''.join(d[ord(i) - ord('a')] for i in w) for w in words})
+        
+        
+def uniqueMorseRepresentations(self, words):
+    
+    map_=[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        
+    res=set()
+        
+    for word in words:
+        val=""
+        for s in word:
+            val+=map_[ord(s)-ord('a')]
+        res.add(val)
+        
+    return len(res)
+'''
