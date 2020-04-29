@@ -12,12 +12,17 @@ class MaxQueue:
             return -1
 
     def push_back(self, value: int) -> None:
+
+        while not self.max or value < self.max[-1]:
+            self.max.pop()
         self.queue.appendleft(value)
-        if not self.max or value > self.max[0]:
-            self.max.appendleft(value)
+        self.max.appendleft(value)
 
     def pop_front(self) -> int:
         if len(self.queue)>0:
-            return self.queue.pop()
+            x = self.queue.pop()
+            if x == self.max[0]:
+                self.max.popleft()
+            return x
         else:
             return -1
