@@ -9,15 +9,15 @@ class Solution:
     def levelOrder(self, root: TreeNode) -> List[int]:
         if not root:
             return []
-        queue,res = [root],[root.val]
+        from collections import deque
+        queue = deque()
+        queue.appendleft(root)
+        res = []
         while queue:
-            temp = []
-            for node in queue:
-                if node.left:
-                    temp.append(node)
-                    res.append(node.left.val)
-                if node.right:
-                    temp.append(node)
-                    res.append(node.right.val)
-            queue = temp
+            node = queue.pop()
+            res.append(node.val)
+            if node.left:
+                queue.appendleft(node.left)
+            if node.right:
+                queue.appendleft(node.right)
         return res

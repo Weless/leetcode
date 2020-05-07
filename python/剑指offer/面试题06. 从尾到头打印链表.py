@@ -8,7 +8,12 @@ class ListNode:
 class Solution:
     def reversePrint(self, head: ListNode) -> List[int]:
         result = []
-        while head != None:
+        while head:
             result.append(head.val)
             head = head.next
-        return list(result.reverse())
+        return result[::-1]
+
+# 递归法
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        return self.reversePrint(head.next) + [head.val] if head else []

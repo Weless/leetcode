@@ -7,12 +7,10 @@ class ListNode:
 class Solution:
     def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
         p1,p2 = head,head
-
-        for i in range(k):
+        while k:
             p2 = p2.next
-
-        while p2 != None:
+            k-=1
+        while p2:
             p2 = p2.next
             p1 = p1.next
-
         return p1

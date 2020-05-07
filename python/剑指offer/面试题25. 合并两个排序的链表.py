@@ -23,6 +23,9 @@ class Solution:
         return tmp.next
 
 # 递归
+# 1.当链表1为空链表时，直接返回链表2；当链表2为空链表时，返回链表1。这两种情况都是递归的边界。
+# 2.当链表1和链表2均不为空时，找出两个链表头节点中值较小者作为新链表的头节点，对于剩余的部分使用递归求解。
+
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         if not l1:

@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func numberOfSteps (num int) int {
+func numberOfSteps(num int) int {
 	count := 0
 	for num != 0 {
 		if num%2 == 0 {
@@ -15,6 +15,6 @@ func numberOfSteps (num int) int {
 	return count
 }
 func main() {
-	num:= 14
+	num := 14
 	fmt.Println(numberOfSteps(num))
 }

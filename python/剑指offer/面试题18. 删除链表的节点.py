@@ -6,18 +6,17 @@ class ListNode:
 
 class Solution:
     def deleteNode(self, head: ListNode, val: int) -> ListNode:
-
-        if head.next is None and head.val == val:
-            head = None
-            return head
-        if head.next != None and head.val == val:
+        cur,= head
+        if cur.val == val:
             return head.next
-        pre = ListNode(0)
-        result = head
-        while head:
-            if head.val == val:
-                head = head.next
-                pre.next = head
+        pre = cur
+        cur = cur.next
+
+        while cur:
+            if cur.val == val:
+                pre.next = cur.next
+                cur = cur.next
             else:
-                pre,head = head,head.next
-        return result
+                pre = pre.next
+                cur = cur.next
+        return head

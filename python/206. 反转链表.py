@@ -3,7 +3,6 @@ class ListNode:
         self.val = x
         self.next = None
 
-
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         cur, pre = head,None
@@ -14,3 +13,12 @@ class Solution:
             cur = head
         return pre
 
+# 递归解法
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        ret = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return ret
