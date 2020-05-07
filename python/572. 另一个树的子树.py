@@ -6,14 +6,15 @@ class TreeNode:
 
 class Solution:
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
-        if not s and not t:
-            return True
-        if s and not t:
-            return True
-        if not s and t:
+
+        def check(a:TreeNode,b:TreeNode):
+            if not a and not b:
+                return True
+            if not a or not b:
+                return False
+            if a.val == b.val:
+                return check(a.left,b.left) and check(a.right,b.right)
             return False
-        if s == t:
-            left = self.isSubtree(s.left,t.left)
-            right = self.isSubtree(s.right,t.right)
-            return left and right
-        return self.isSubtree(s.left,t) or self.isSubtree(s.right,t)
+        if not s:
+            return False
+        return check(s,t) or self.isSubtree(s.left,t) or self.isSubtree(s.right,t)
