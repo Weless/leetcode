@@ -8,10 +8,10 @@ class CQueue:
         self.input.append(value)
 
     def deleteHead(self) -> int:
-        if len(self.input) == 0 and len(self.output) == 0:
+        if not self.input and not self.output:
             return -1
-        if self.output != []:
+        if self.output:
             return self.output.pop()
-        while self.input != []:
+        while self.input:
             self.output.append(self.input.pop())
         return self.output.pop()

@@ -6,5 +6,5 @@ class Solution:
             start *= 10
             digit += 1
             count = 9 * start * digit
-        num = start + (n - 1) // digit # 2.
-        return int(str(num)[(n - 1) % digit]) # 3.
+        num = start + (n - 1) // digit
+        return int(str(num)[(n - 1) % digit])

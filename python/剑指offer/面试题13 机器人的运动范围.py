@@ -1,48 +1,33 @@
 class Solution:
+    directions = [(1,0),(0,1)] # 该题只需要两个方向即可
     def movingCount(self, m: int, n: int, k: int) -> int:
-        temp = [[0]*n for _ in range(m)]
-        temp[0][0] = 1
-        # 不可达
-        for x in range(m):
-            for y in range(n):
-                if self.judge(x,y) > k :
-                    temp[x][y] = -1
+        from collections import deque
+        queue = deque()
+        queue.appendleft((0,0))
+        marked = [[False for _ in range(n)] for _ in range(m)]
+        marked[0][0] = True
+        count = 1
+        while queue:
+            x,y = queue.pop()
+            for direction in self.directions:
+                new_x = x + direction[0]
+                new_y = y + direction[1]
+                if 0<=new_x<=m-1 and 0<=new_y<=n-1 and self.check(new_x)+ self.check(new_y) <= k and marked[new_x][new_y] == False:
+                    queue.appendleft((new_x,new_y))
+                    marked[new_x][new_y] = True
+                    count +=1
+        return count
 
-        for x in range(m):
-            for y in range(n):
+    def check(self,n):
+        ans = 0
+        while n:
+            ans += n % 10
+            n //= 10
+        return ans
 
-                if temp[x][y] == 1:
-                    try:
-                        if temp[x+1][y] == 0 and self.judge(x+1,y):
-                            temp[x+1][y] = 1
-                    except:
-                        pass
-                    try:
-                        if temp[x-1][y] == 0 and self.judge(x-1,y):
-                            temp[x-1][y] = 1
-                    except:
-                        pass
-                    try:
-                        if temp[x][y+1] == 0 and self.judge(x,y+1):
-                            temp[x][y+1] = 1
-                    except:
-                        pass
-                    try:
-                        if temp[x][y-1] == 0 and self.judge(x, y-1):
-                            temp[x][y-1] = 1
-                    except:
-                        pass
-        return [temp[x][y] for x in range(m) for y in range(n)].count(1)
 
-    def judge(self,x,y):
-        x,y = str(x),str(y)
-        aSum = 0
-        for i in x:
-            aSum += int(i)
-        for i in y:
-            aSum += int(i)
-        return aSum
+
 
 
 s = Solution()
-print(s.movingCount(m = 2, n = 3, k = 1))
+print(s.movingCount(m = 10, n = 10, k = 8))

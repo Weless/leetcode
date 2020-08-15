@@ -1,4 +1,5 @@
 from typing import List
+# 不适合用bfs来做
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         def dfs(i, j, k):
@@ -13,3 +14,7 @@ class Solution:
             for j in range(len(board[0])):
                 if dfs(i, j, 0): return True
         return False
+s = Solution()
+board = [["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]
+word = "ABCESEEEFS"
+print(s.exist(board,word))

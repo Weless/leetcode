@@ -1,9 +1,9 @@
 from typing import List
 
 # 对称遍历
-# 从左往右遍历累乘，结果保存在数组 ret 中，此时 ret[i]] 表示，A[i] 左边所有元素的乘积
+# 从左往右遍历累乘，结果保存在数组 res   中，此时 res[i] 表示，A[i] 左边所有元素的乘积
 # 然后从右往左遍历累乘，获取A[i] 右边所有元素的乘积
-# 两边遍历之后得到的 ret，就是最终结果
+# 两边遍历之后得到的 res，就是最终结果
 
 class Solution:
     def constructArr(self, a: List[int]) -> List[int]:

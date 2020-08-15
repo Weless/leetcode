@@ -12,6 +12,18 @@ class Solution:
                 d.append(i)
         return list(d)
 
+
+class Solution:
+    def exchange(self, nums: List[int]) -> List[int]:
+        s1 = []
+        s2 = []
+        for i in nums:
+            if i % 2 != 0:
+                s1.append(i)
+            else:
+                s2.append(i)
+        return s1 + s2
+
 s = Solution()
 nums = [1,2,3,4]
 print(s.exchange(nums))

@@ -3,26 +3,19 @@ from typing import List
 # 回朔法
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        def trackBack(nums,track,visited):
-            if len(track) == len(nums):
-                res.append(track[:])
+        def dfs(path,nums,length):
+            if len(path) == length:
+                res.append(path[:])
                 return
             for i in range(len(nums)):
-                if(visited[i]):
-                    continue
-                if(i>0 and nums[i] == nums[i-1] and visited[i-1]):
-                    continue
-                track.append(nums[i])
-                visited[i] = True
-                trackBack(nums,track,visited)
-                track.pop()
-                visited[i] = False
-
-        track = []
+                if i > 0 and nums[i] == nums[i-1]:continue
+                path.append(nums[i])
+                dfs(path,nums[:i]+nums[i+1:],length)
+                path.pop()
         res = []
-        visited = [False for _ in range(len(nums))]
+        length = len(nums)
         nums.sort()
-        trackBack(nums,track,visited)
+        dfs([],nums,length)
         return res
 
 # 不断获取下一个全排列

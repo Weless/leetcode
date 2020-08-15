@@ -1,11 +1,11 @@
 from typing import List
 
 # 二分查找
-# class Solution:
-#     def search(self, nums: List[int], target: int) -> int:
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
         import bisect
-#         left,right = bisect.bisect_left(nums,target),bisect.bisect_right(nums,target)
-#         return right - left
+        left,right = bisect.bisect_left(nums,target),bisect.bisect_right(nums,target)
+        return right - left
 
 
 class Solution:

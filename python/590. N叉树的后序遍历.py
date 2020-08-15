@@ -5,16 +5,28 @@ class Node:
 from typing import List
 class Solution:
     def postorder(self, root: 'Node') -> List[int]:
-
-        def helper(node,res=[]):
-            if node:
-                helper(node.children,res)
-                for n in node.children:
-                    res.append(n.val)
-                res.append(node.val)
         res = []
-        helper(root,res)
+        def dfs(root):
+            if root:
+                if root.children:
+                    for child in root.children:
+                       dfs(child)
+                res.append(root.val)
+        dfs(root)
         return res
 
 
-from pythonds import s
+# 迭代
+
+class Solution(object):
+    def postorder(self, root):
+        if not root:
+            return []
+        stack,output = [root],[]
+        while stack:
+            node = stack.pop()
+            if node:
+                output.append(node.val)
+            for c in node.children:
+                stack.append(c)
+        return output[::-1]

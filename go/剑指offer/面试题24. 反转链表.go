@@ -1,8 +1,7 @@
 package main
 
 func reverseList(head *ListNode) *ListNode {
-	pre := new(ListNode)
-	pre = nil
+	var pre *ListNode
 	cur := head
 	for head != nil {
 		head = head.Next

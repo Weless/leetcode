@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     def findDiagonalOrder(self, A: List[List[int]]) -> List[int]:
         stack = []

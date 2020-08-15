@@ -14,7 +14,7 @@ class Solution:
                 return 0
 
         strs = [str(num) for num in nums]
-        strs.sort(key=functools.cmp_to_key(sort_rule))
+        strs.sort(key=lambda x,y: int(x+y)>int(y+x))
         return ''.join(strs)
 
 s = Solution()

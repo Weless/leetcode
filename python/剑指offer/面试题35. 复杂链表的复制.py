@@ -5,13 +5,27 @@ class Node:
         self.random = random
 class Solution:
     def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head:
+            return None
         cur = head
-        tmp = []
-        while head:
-            tmp.append(head.random)
-            head = head.next
-        res = cur
         while cur:
-            cur.random = tmp.pop(0)
+            node = Node(cur.val,None,None)
+            node.next = cur.next
+            cur.next = node
+            cur = node.next
+        cur = head
+        while cur:
+            node = cur.next
+            node.random = cur.random.next if cur.random else None
+            cur = node.next
+        cur = head
+        newhead = cur.next
+        while cur:
+            node = cur.next
+            cur.next = node.next
             cur = cur.next
-        return cur
+            if cur:
+                node.next = cur.next
+            else:
+                node.next = None
+        return newhead

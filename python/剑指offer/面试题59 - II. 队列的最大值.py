@@ -6,21 +6,21 @@ class MaxQueue:
         self.max = deque()
 
     def max_value(self) -> int:
-        if len(self.queue) > 0:
+        if self.max:
             return self.max[0]
         else:
             return -1
 
-    def push_back(self, value: int) -> None:
 
-        while not self.max or value < self.max[-1]:
+    def push_back(self, value: int) -> None:
+        self.queue.append(value)
+        while self.max and value > self.max[-1]:
             self.max.pop()
-        self.queue.appendleft(value)
-        self.max.appendleft(value)
+        self.max.append(value)
 
     def pop_front(self) -> int:
-        if len(self.queue)>0:
-            x = self.queue.pop()
+        if self.queue:
+            x = self.queue.popleft()
             if x == self.max[0]:
                 self.max.popleft()
             return x

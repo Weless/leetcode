@@ -1,28 +1,15 @@
 from typing import List
 class Solution:
-    directions = [(1,0),(0,1)]
     def findNumberIn2DArray(self, matrix: List[List[int]], target: int) -> bool:
-        if not matrix:
-            return False
-        m,n = len(matrix),len(matrix[0])
-        if n == 0:
-            return False
-        from collections import deque
-        queue = deque()
-        queue.append((0,0))
-        mark = [[False for _ in range(n)] for _ in range(m)]
-        while queue:
-            for _ in range(len(queue)):
-                x,y = queue.popleft()
-                mark[x][y] = True
-                if matrix[x][y] == target:
-                    return True
-                else:
-                    for directions in self.directions:
-                        new_x = directions[0] + x
-                        new_y = directions[1] + y
-                        if 0<=new_x<=m-1 and 0<=new_y<=n-1 and not mark[new_x][new_y]:
-                            queue.append((new_x,new_y))
+        if not matrix: return False
+        i,j = 0, len(matrix[0])-1
+        while i < len(matrix) and j>=0:
+            if target > matrix[i][j]:
+                i+=1
+            elif target < matrix[i][j]:
+                j-=1
+            else:
+                return True
         return False
 
 s = Solution()

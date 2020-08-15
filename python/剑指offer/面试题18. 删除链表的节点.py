@@ -6,7 +6,7 @@ class ListNode:
 
 class Solution:
     def deleteNode(self, head: ListNode, val: int) -> ListNode:
-        cur,= head
+        cur= head
         if cur.val == val:
             return head.next
         pre = cur

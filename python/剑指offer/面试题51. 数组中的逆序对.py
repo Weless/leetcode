@@ -1,35 +1,37 @@
 from typing import List
+
+
 class Solution:
-    def mergeSort(self, nums, tmp, l, r):
-        if l >= r:
-            return 0
-
-        mid = (l + r) // 2
-        inv_count = self.mergeSort(nums, tmp, l, mid) + self.mergeSort(nums, tmp, mid + 1, r)
-        i, j, pos = l, mid + 1, l
-        while i <= mid and j <= r:
-            if nums[i] <= nums[j]:
-                tmp[pos] = nums[i]
-                i += 1
-                inv_count += (j - (mid + 1))
-            else:
-                tmp[pos] = nums[j]
-                j += 1
-            pos += 1
-        for k in range(i, mid + 1):
-            tmp[pos] = nums[k]
-            inv_count += (j - (mid + 1))
-            pos += 1
-        for k in range(j, r + 1):
-            tmp[pos] = nums[k]
-            pos += 1
-        nums[l:r+1] = tmp[l:r+1]
-        return inv_count
-
     def reversePairs(self, nums: List[int]) -> int:
-        n = len(nums)
-        tmp = [0] * n
-        return self.mergeSort(nums, tmp, 0, n - 1)
+        def mergeSort(nums, start, end):
+            if start >= end: return
+            mid = (start + end) >> 1
+            mergeSort(nums, start, mid)
+            mergeSort(nums, mid + 1, end)
+            merge(nums, start, end, mid)
+
+        # 合并两个有序数组
+        def merge(nums, start, end, mid):
+            i,j,tmp = start,mid+1,[]
+            while i <= mid and j <= end:
+                if nums[i] <= nums[j]:
+                    tmp.append(nums[i])
+                    i+=1
+                else:
+                    self.cnt += mid - i + 1
+                    tmp.append(nums[j])
+                    j+=1
+            while i <= mid:
+                tmp.append(nums[i])
+                i+=1
+            while j <= end:
+                tmp.append(nums[j])
+                j+=1
+            for i in range(len(tmp)):
+                nums[start+i] = tmp[i]
+        self.cnt = 0
+        mergeSort(nums,0,len(nums)-1)
+        return self.cnt
 
 s = Solution()
 nums = [7,5,6,4]
