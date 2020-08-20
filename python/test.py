@@ -1,15 +1,40 @@
-arr = [54,26,93,17,77,31,44,55,20]
-def fast_sort(l, r):
-    if l>r: return
-    i,j = l,r
-    pivot = arr[l]
-    while i < j:
-        while i < j and arr[j]>=pivot: j-=1
-        while i < j and arr[i]<=pivot: i+=1
-        arr[i],arr[j] = arr[j],arr[i]
-    arr[j],arr[l] = arr[l],arr[j]
-    fast_sort(l,i-1)
-    fast_sort(i+1,r)
+class Solution(object):
+    directions = [(0,1),(0,-1),(1,0),(-1,0),(1,1),(1,-1),(-1,1),(-1,-1)]
+    def updateBoard(self, board, click):
+        if board[click[0]][click[1]] == 'M':
+            board[click[0]][click[1]] = 'X'
+            return board
 
-fast_sort(0,len(arr)-1)
-print(arr)
+        def cal(x,y):
+            count = 0
+            for direction in self.directions:
+                new_x = direction[0] + x
+                new_y = direction[1] + y
+                if 0<=new_x<len(board) and 0<=new_y<len(board[0]) and board[new_x][new_y] == 'M':
+                    count+=1
+            return count
+        from collections import deque
+        marked = [[False for _ in range(len(board[0]))] for _ in range(len(board))]
+        q = deque()
+        q.append(click)
+        while q:
+            x,y = q.popleft()
+            num = cal(x,y)
+            if num > 0:
+                board[x][y] = str(num)
+                continue
+            for direction in self.directions:
+                new_x = direction[0] + x
+                new_y = direction[1] + y
+                if 0<=new_x<=len(board)-1 and 0<=new_y<=len(board[0])-1 and marked[new_x][new_y] == False:
+                    marked[new_x][new_y] = True
+                    q.append((new_x,new_y))
+            board[x][y] = 'B'
+        return board
+s = Solution()
+board = [['E', 'E', 'E', 'E', 'E'],
+ ['E', 'E', 'M', 'E', 'E'],
+ ['E', 'E', 'E', 'E', 'E'],
+ ['E', 'E', 'E', 'E', 'E']]
+click = [3,0]
+print(s.updateBoard(board,click))
