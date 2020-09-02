@@ -5,13 +5,16 @@ class TreeNode:
         self.right = None
 
 class Solution:
+    res = 0
     def findTilt(self, root: TreeNode) -> int:
-        def dfs(root,v):
+        def dfs(root):
             if not root:
-                return v
-            left = dfs(root.left,v)
-            right = dfs(root.right,v)
-            v += root.val
-        left = dfs(root.left,0)
-        right = dfs(root.right,0)
-        return abs(left-right)
+                return 0
+            left = dfs(root.left)
+            right = dfs(root.right)
+            self.res += abs(left-right)
+            return left + right + root.val
+        if not root:
+            return 0
+        dfs(root)
+        return self.res

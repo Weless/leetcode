@@ -1,40 +1,37 @@
-class Solution(object):
-    directions = [(0,1),(0,-1),(1,0),(-1,0),(1,1),(1,-1),(-1,1),(-1,-1)]
-    def updateBoard(self, board, click):
-        if board[click[0]][click[1]] == 'M':
-            board[click[0]][click[1]] = 'X'
-            return board
+# 单个列表
+def getResult(nums):
+    d = dict()
+    res = []
+    for i in nums:
+        if i not in d:
+            d[i] = 1
+        else:
+            d[i] +=1
+    res = sorted(d.items(),key=lambda x:x[1],reverse=True)
+    return res
+nums = [1,2,3,1,3,2,4,1,1,1]
+print(getResult(nums))
 
-        def cal(x,y):
-            count = 0
-            for direction in self.directions:
-                new_x = direction[0] + x
-                new_y = direction[1] + y
-                if 0<=new_x<len(board) and 0<=new_y<len(board[0]) and board[new_x][new_y] == 'M':
-                    count+=1
-            return count
-        from collections import deque
-        marked = [[False for _ in range(len(board[0]))] for _ in range(len(board))]
-        q = deque()
-        q.append(click)
-        while q:
-            x,y = q.popleft()
-            num = cal(x,y)
-            if num > 0:
-                board[x][y] = str(num)
-                continue
-            for direction in self.directions:
-                new_x = direction[0] + x
-                new_y = direction[1] + y
-                if 0<=new_x<=len(board)-1 and 0<=new_y<=len(board[0])-1 and marked[new_x][new_y] == False:
-                    marked[new_x][new_y] = True
-                    q.append((new_x,new_y))
-            board[x][y] = 'B'
-        return board
-s = Solution()
-board = [['E', 'E', 'E', 'E', 'E'],
- ['E', 'E', 'M', 'E', 'E'],
- ['E', 'E', 'E', 'E', 'E'],
- ['E', 'E', 'E', 'E', 'E']]
-click = [3,0]
-print(s.updateBoard(board,click))
+
+# 多个列表
+def getResult2(nums2):
+    d = dict()
+    for num in nums2:
+        d1 = dict()
+        for i in num:
+            if i not in d1:
+                d1[i] = 1
+            else:
+                d1[i] += 1
+        for key,value in d1.items():
+            if key not in d:
+                d[key] = value
+            else:
+                d[key] = max(d[key],value)
+    res = sorted(d.items(), key=lambda x: x[1], reverse=True)
+    return res
+
+nums2 = [[1,2,3,1,3,2,4,1,1,1],[1,2,3,1,1,1,1],[3,1,3,2,4,1,1,1]]
+print(getResult2(nums2))
+
+
