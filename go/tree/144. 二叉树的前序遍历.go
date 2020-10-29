@@ -1,10 +1,4 @@
-package algorithem
-
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+package tree
 
 func preorderTraversal(root *TreeNode) []int {
 	var res []int

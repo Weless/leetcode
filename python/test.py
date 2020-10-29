@@ -1,16 +1,17 @@
 from typing import List
-class TreeNode:
+
+class ListNode:
     def __init__(self, x):
         self.val = x
-        self.left = None
-        self.right = None
+        self.next = None
 
 class Solution:
-    def sumOfLeftLeaves(self, root: TreeNode) -> int:
-        if not root: return 0
-        self.
+    def isPalindrome(self, head: ListNode) -> bool:
+        res = []
+        while head:
+            res.append(head.val)
+            head = head.next
+        return res == res[::-1]
 
 
-s = Solution()
-nums = [1,1,2]
-print(s.sumOfLeftLeaves(nums))
+
