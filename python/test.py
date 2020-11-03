@@ -1,17 +1,28 @@
 from typing import List
 
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
 class Solution:
-    def isPalindrome(self, head: ListNode) -> bool:
-        res = []
-        while head:
-            res.append(head.val)
-            head = head.next
-        return res == res[::-1]
+    def validMountainArray(self, A: List[int]) -> bool:
+        if len(A) <=2 :
+            return False
+        if max(A) == A[0] or max(A) == A[-1]:
+            return False
+        i,j = 0,len(A)-1
+        while i<len(A):
+            if A[i] < A[i+1]:
+                i+=1
+            else:
+                break
+        while j>0:
+            if A[j] < A[j-1]:
+                j-=1
+            else:
+                break
+        if i == j:
+            return True
+        return False
 
+s = Solution()
+A= [0,1,2,3,4,5,6,7,8,9]
+print(s.validMountainArray(A))
 
 

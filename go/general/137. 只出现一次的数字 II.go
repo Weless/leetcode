@@ -1,4 +1,4 @@
-package general
+package main
 
 func singleNumber(nums []int) int {
 	res := 0

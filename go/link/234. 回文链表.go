@@ -1,10 +1,5 @@
 package link
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func isPalindrome(head *ListNode) bool {
 	var res []int
 	for head != nil {

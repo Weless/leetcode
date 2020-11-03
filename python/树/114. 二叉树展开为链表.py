@@ -15,6 +15,7 @@ class Solution:
         self.flatten(root.left)
         # 右子树变成链表
         self.flatten(root.right)
+
         temp = root.right
         # 树的右边换成左边的链表
         root.right = root.left
