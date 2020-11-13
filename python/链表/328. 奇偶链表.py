@@ -6,9 +6,12 @@ class ListNode:
 class Solution:
     def oddEvenList(self, head: ListNode) -> ListNode:
         if not head: return None
-        odd,even,cur = head,head.next,ListNode(-1)
-        while odd and odd.next:
-            cur.next = odd
-            cur = cur.next
-            odd = odd.next.next
+        odd,even = head,head.next
+        while even and even.next:
+            odd.next = even.next
+            even.next = even.next.next
+            odd = odd.next
+            even = even.next
+        odd.next = even
+        return head
 
