@@ -16,21 +16,17 @@ class Solution:
         from collections import deque
         queue = deque()
         queue.append(tree)
-        node = ListNode(tree.val)
-        res = [node]
+        res = []
         while queue:
-            tmp = []
-            node = queue.popleft()
-            if node.left:
-                queue.append(node.left)
-                tmp.append(ListNode(node.left.val))
-            if node.right:
-                queue.append(node.right)
-                tmp.append(ListNode(node.right.val))
-            if node.left and node.right:
-                tmp[0].next = tmp[1]
-            res.append(tmp)
+            head = TreeNode(-1)
+            start = head
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                head.next = ListNode(node.val)
+                head = head.next
+                if node.left: queue.append(node.left)
+                if node.right: queue.append(node.right)
+            res.append(start.next)
         return res
-
 
 
