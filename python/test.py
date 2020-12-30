@@ -1,21 +1,37 @@
 from typing import List
 
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if not intervals: return []
-        intervals.sort(key=lambda x:x[0])
-        ans = []
-        for interval in intervals:
-            if not ans or ans[-1][1] < interval[0]:
-                ans.append(interval)
+    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        from collections import deque
+        q = deque()
+        q.appendleft(root)
+        l = 0
+        res = []
+        while q:
+            tmp = []
+            for _ in range(len(q)):
+                node = q.pop()
+                tmp.append(node.val)
+                if node.left: q.appendleft(node.left)
+                if node.right: q.appendleft(node.right)
+            if l % 2 == 0:
+                res.append(tmp)
             else:
-                ans[-1][1] = max(ans[-1][1],interval[1])
-        return ans
+                res.append(tmp[::-1])
+            l+=1
+        return res
+
 
 s = Solution()
-intervals = [[1,9],[2,5],[19,20],[10,11],[12,20],[0,3],[0,1],[0,2]]
-print(s.merge(intervals))
-
+m = 3
+n = 2
+print(s.uniquePaths(3,2))
 
 
 
