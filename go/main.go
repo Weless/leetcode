@@ -2,31 +2,40 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"math"
 )
 
-func intersection2(nums1 []int, nums2 []int) []int {
-	sort.Ints(nums1)
-	sort.Ints(nums2)
-	ret := []int{}
-	i, j := 0, 0
-	for i < len(nums1) && j < len(nums2) {
-		if nums1[i] == nums2[j] {
-			if len(ret) == 0 || ret[len(ret)-1] != nums1[i] {
-				ret = append(ret, nums1[i])
+func shortestDistance(words []string, word1 string, word2 string) int {
+	if word1 == word2 {
+		return 0
+	}
+	ans := math.MaxInt32
+	for i, word := range words {
+		fmt.Println(i, word)
+		if word == word1 {
+			x, y := i-1, i+1
+			for x >= 0 || y < len(words) {
+				if x >= 0 && words[x] == word2 {
+					if i-x < ans {
+						ans = i - x
+					}
+				}
+				if y < len(words) && words[y] == word2 {
+					if y-i < ans {
+						ans = y - i
+					}
+				}
+				x--
+				y++
 			}
-			i++
-			j++
-		} else if nums1[i] < nums2[j] {
-			i++
-		} else {
-			j++
 		}
 	}
-	return ret
+	return ans
 }
 
 func main() {
-	nums1, nums2 := []int{4, 9, 5}, []int{9, 4, 9, 8, 4}
-	fmt.Println(intersection2(nums1, nums2))
+	words := []string{"a", "c", "b", "a"}
+	word1 := "a"
+	word2 := "b"
+	fmt.Println(shortestDistance(words, word1, word2))
 }

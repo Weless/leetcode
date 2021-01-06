@@ -1,4 +1,4 @@
-package string
+package design
 
 var solution = func(read4 func([]byte) int) func([]byte, int) int {
 	// implement read below.
