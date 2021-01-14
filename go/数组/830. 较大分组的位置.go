@@ -1,4 +1,4 @@
-package main
+package array
 
 func largeGroupPositions(s string) [][]int {
 	var res [][]int
@@ -8,7 +8,7 @@ func largeGroupPositions(s string) [][]int {
 			if s[j] != s[i] {
 				break
 			}
-			j += 1
+			j++
 		}
 		if j-i >= 3 {
 			res = append(res, []int{i, j - 1})

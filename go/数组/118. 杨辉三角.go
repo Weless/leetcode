@@ -1,4 +1,4 @@
-package main
+package array
 
 func generate(numRows int) [][]int {
 	var res [][]int

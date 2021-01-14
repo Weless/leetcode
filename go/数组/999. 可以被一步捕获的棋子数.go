@@ -1,4 +1,4 @@
-package main
+package array
 
 func numRookCaptures(board [][]byte) int {
 	m, n := len(board), len(board[0])

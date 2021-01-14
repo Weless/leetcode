@@ -1,4 +1,4 @@
-package main
+package array
 
 func maximumWealth(accounts [][]int) int {
 	var max int

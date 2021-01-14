@@ -13,16 +13,15 @@ func canPermutePalindrome(s string) bool {
 			}
 		}
 		return true
-	} else {
-		count := 0
-		for _, v := range d {
-			if v%2 != 0 {
-				count++
-			}
-			if count > 1 {
-				return false
-			}
-		}
-		return true
 	}
+	count := 0
+	for _, v := range d {
+		if v%2 != 0 {
+			count++
+		}
+		if count > 1 {
+			return false
+		}
+	}
+	return true
 }

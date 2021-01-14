@@ -1,4 +1,4 @@
-package main
+package array
 
 func validMountainArray(A []int) bool {
 	i, n := 0, len(A)

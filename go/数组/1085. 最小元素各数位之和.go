@@ -1,4 +1,4 @@
-package main
+package array
 
 import "math"
 
@@ -16,7 +16,6 @@ func sumOfDigits(A []int) int {
 	}
 	if ans%2 == 0 {
 		return 1
-	} else {
-		return 0
 	}
+	return 0
 }

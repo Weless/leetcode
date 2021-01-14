@@ -1,4 +1,4 @@
-package main
+package array
 
 func countElements(arr []int) int {
 	d := make(map[int]struct{})

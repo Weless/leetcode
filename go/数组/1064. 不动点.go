@@ -1,4 +1,4 @@
-package main
+package array
 
 func fixedPoint(A []int) int {
 	for i, v := range A {

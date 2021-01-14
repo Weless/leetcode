@@ -1,4 +1,4 @@
-package main
+package array
 
 import "sort"
 
@@ -17,9 +17,9 @@ func intersection(A, B []int) []int {
 			i++
 			j++
 		} else if ti < tj {
-			i += 1
+			i++
 		} else {
-			j += 1
+			j++
 		}
 	}
 	return res

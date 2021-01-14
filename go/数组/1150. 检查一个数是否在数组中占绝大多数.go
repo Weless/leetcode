@@ -1,4 +1,4 @@
-package main
+package array
 
 func isMajorityElement(nums []int, target int) bool {
 	n := 0
@@ -9,7 +9,7 @@ func isMajorityElement(nums []int, target int) bool {
 	}
 	if n > len(nums)/2 {
 		return true
-	} else {
-		return false
 	}
+	return false
+
 }

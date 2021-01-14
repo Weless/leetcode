@@ -1,4 +1,4 @@
-package main
+package array
 
 func fourSumCount(A []int, B []int, C []int, D []int) int {
 	var d = make(map[int]int)

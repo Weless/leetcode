@@ -1,4 +1,4 @@
-package main
+package array
 
 func thirdMax(nums []int) int {
 	var MIN = -1 << 63

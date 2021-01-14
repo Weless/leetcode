@@ -1,4 +1,4 @@
-package main
+package array
 
 func stringShift(s string, shift [][]int) string {
 	for _, t := range shift {

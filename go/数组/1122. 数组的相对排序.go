@@ -1,4 +1,4 @@
-package main
+package array
 
 import "sort"
 
@@ -11,9 +11,9 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 		if _, ok := d[v]; !ok {
 			d[v] = 1
 		} else {
-			d[v] += 1
+			d[v]++
 		}
-		if InSlice(v, arr2) == false {
+		if inSlice(v, arr2) == false {
 			tmp = append(tmp, v)
 		}
 	}
@@ -26,7 +26,7 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 	return res
 }
 
-func InSlice(e int, slice []int) bool {
+func inSlice(e int, slice []int) bool {
 	for _, s := range slice {
 		if s == e {
 			return true
