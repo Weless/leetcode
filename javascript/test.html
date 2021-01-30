@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p1>test</p1>
+<script>
+    function debug(msg){
+        var log = document.getElementById("debuglog");
+
+        if(!log){
+            log = document.createElement("div")
+            log.id = "debuglog";
+            log.innerHTML = "<h1>Debug Log</h1>"  // 定义初始内容
+            document.body.appendChild(log);   // 将其添加到文档的末尾
+        }
+
+        // 将消息包装在<pre>中，并添加至log中
+        var pre = document.createElement("pre");  // 创建<pre>标签
+        var text = document.createTextNode("msg");  // 将msg包装在一个文本节点中
+        pre.appendChild(text);  // 将文本添加至<pre>
+        log.appendChild(pre);  // 将<pre>添加至log
+    }
+    debug("hh")
+</script>
+</body>
+</html>

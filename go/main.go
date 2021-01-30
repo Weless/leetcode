@@ -34,8 +34,20 @@ func shortestDistance(words []string, word1 string, word2 string) int {
 }
 
 func main() {
-	words := []string{"a", "c", "b", "a"}
-	word1 := "a"
-	word2 := "b"
-	fmt.Println(shortestDistance(words, word1, word2))
+	var f func(string) int
+	f = func(s string) int {
+		num := 0
+		mStr := byte('z')
+		for i := 0; i < len(s); i++ {
+			if s[i] < mStr {
+				mStr = s[i]
+				num = 1
+			} else if s[i] == mStr {
+				num++
+			}
+		}
+		return num
+	}
+	test := "bbabbabaab"
+	fmt.Println(f(test))
 }
