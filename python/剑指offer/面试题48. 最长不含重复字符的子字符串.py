@@ -19,7 +19,7 @@ class Solution:
             res = max(res, tmp) # max(dp[j - 1], dp[j])
         return res
 
-# 滑动窗口
+# Sliding Window
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         head = 0

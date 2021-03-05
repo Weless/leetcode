@@ -3,6 +3,7 @@ class Solution:
     def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
         if not matrix: return True
         m,n = len(matrix),len(matrix[0])
+        tmp = [[False for _ in range(n)] for _ in range(m)]
         for i in range(m):
             for j in range(n):
                 new_i = i+1

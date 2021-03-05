@@ -1,9 +1,6 @@
-package main
+package stack
 
-import (
-	"fmt"
-	"strconv"
-)
+import "strconv"
 
 func calPoints(ops []string) int {
 	var res []int
@@ -24,9 +21,4 @@ func calPoints(ops []string) int {
 		sum += v
 	}
 	return sum
-}
-
-func main() {
-	ops := []string{"5", "-2", "4", "C", "D", "9", "+", "+"}
-	fmt.Println(calPoints(ops))
 }
