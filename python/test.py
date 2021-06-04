@@ -1,29 +1,21 @@
-from typing import List
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
-import random
-import time
-
-res = []
-def produceRandomNum(n):
-    if n <= 0:
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        curA,curB = headA,headB
+        while curA or curB:
+            if curA == curB:
+                return headA
+            if curA:
+                curA = curA.next
+            else:
+                curA = curB
+            if curB:
+                curB = curB.next
+            else:
+                curB = curA
         return
-    random.seed(time.time())
-    alist = list(range(n))
-    while alist:
-        x = random.choice(alist)
-        res.append(x)
-        alist.remove(x)
-n = 1
-produceRandomNum(n)
-# print(res)
-
-
-def check(res,n):
-    if n <= 0:
-        return res == []
-    if len(res) != n:
-        return False
-    for i in range(0,n):
-        if i not in res:
-            return False
-    return True

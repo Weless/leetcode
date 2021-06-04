@@ -17,6 +17,7 @@ class Solution:
                 x+=1
         return matrix
 
+
 s = Solution()
 nums = [[1,2],
  [3,4]]
