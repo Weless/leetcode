@@ -1,21 +1,10 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
+from typing import List
 class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
-        curA,curB = headA,headB
-        while curA or curB:
-            if curA == curB:
-                return headA
-            if curA:
-                curA = curA.next
-            else:
-                curA = curB
-            if curB:
-                curB = curB.next
-            else:
-                curB = curA
-        return
+    def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
+        res =  {1}
+        for i in range(len(primes)-1):
+            res.add(primes[i])
+            j = i+1
+            while j < len(primes) - 1:
+                res.add(primes[j])
+
