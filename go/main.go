@@ -1,32 +1,27 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
-func calPoints(ops []string) int {
+func majorityElement(nums []int) []int {
+	cnt := len(nums) / 3
+
+	cntMap := make(map[int]int)
+
 	var res []int
-	for _, v := range ops {
-		if v == "C" {
-			res = res[:len(res)-1]
-		} else if v == "D" {
-			res = append(res, res[len(res)-1]*2)
-		} else if v == "+" {
-			res = append(res, res[len(res)-1]+res[len(res)-2])
-		} else {
-			int_v, _ := strconv.Atoi(v)
-			res = append(res, int_v)
+
+	for _, v := range nums {
+		cntMap[v]++
+	}
+
+	for k, v := range cntMap {
+		if v > cnt {
+			res = append(res, k)
 		}
 	}
-	var sum int
-	for _, v := range res {
-		sum += v
-	}
-	return sum
+	return res
 }
 
 func main() {
-	ops := []string{"5", "-2", "4", "C", "D", "9", "+", "+"}
-	fmt.Println(calPoints(ops))
+	nums := []int{1, 1, 1, 3, 3, 2, 2, 2}
+	fmt.Println(majorityElement(nums))
 }
